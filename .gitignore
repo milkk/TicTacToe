@@ -1,0 +1,10 @@
+# IDE Files#
+.idea/
+TicTacToe.iml
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear

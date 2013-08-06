@@ -28,11 +28,19 @@ public class Game {
 		if (running) {
 			System.out.println("Игра уже запущена");
 		}
-		System.out.println("New game");
+		System.out.println("Starting new game");
 	}
 
 	private void rules() {
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$ Правила игры $$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println();
 
+		System.out.println("Игроки по очереди ставят на свободные клетки поля 3х3 знаки ");
+		System.out.println("(один всегда крестики, другой всегда нолики). Первый, выстроивший в ряд 3 ");
+		System.out.println("своих фигуры по вертикали, горизонтали или диагонали, выигрывает. ");
+		System.out.println("Первый ход делает игрок, ставящий крестики.");
+		System.out.println();
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	}
 
 	private void showStartupMenu() {

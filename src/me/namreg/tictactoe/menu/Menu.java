@@ -14,15 +14,8 @@ abstract public class Menu {
 		create();
 	}
 
-//	public Menu(){
-//
-//	}
-
 	public void show() {
-		System.out.println(getCaption());
-		for (Map.Entry<Integer, String> entry : getItems().entrySet()) {
-			showItem(entry.getKey(), entry.getValue());
-		}
+		draw();
 		while (!isChosen()) {
 			if (scanner.hasNextInt()) {
 				Integer input = scanner.nextInt();
@@ -56,14 +49,22 @@ abstract public class Menu {
 
 	abstract protected void create();
 
-	protected void showItem(Integer code, String title) {
+	protected void draw() {
+		System.out.println(getCaption());
+		for (Map.Entry<Integer, String> entry : getItems().entrySet()) {
+			drawItem(entry.getKey(), entry.getValue());
+		}
+	}
+
+	protected void drawItem(Integer code, String title) {
 		System.out.printf("%d. %s\n", code, title);
 	}
 
 	protected void incorrectInput(Object input) {
 		setChosen(false);
-		System.out.println("Некорректный ввод");
+		System.out.println("ERROR:Некорректный ввод");
 		listener.codeSelectedWithError(input);
+		draw();
 	}
 
 	public interface Listener {

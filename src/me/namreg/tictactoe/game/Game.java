@@ -1,5 +1,7 @@
 package me.namreg.tictactoe.game;
 
+import me.namreg.tictactoe.field.Cell;
+import me.namreg.tictactoe.field.Field;
 import me.namreg.tictactoe.helpers.FileHelper;
 import me.namreg.tictactoe.menu.*;
 import me.namreg.tictactoe.player.Computer;
@@ -34,16 +36,29 @@ public class Game {
 
 	private void initialize() {
 		if (mode == Mode.HUMAN_COMPUTER) {
-			Player humanPlayer = new Human();
-			Player computerPlayer = new Computer();
-			players.add(humanPlayer);
-			players.add(computerPlayer);
+			initializeHumanComputer();
 		} else if (mode == Mode.HUMAN_HUMAN) {
-			System.out.println("Пока не поддерживается");
+			initializeHumanHuman();
 		}
 		gameManager = new GameManager();
 		gameManager.manage();
 
+	}
+
+	private void initializeHumanComputer() {
+		Player humanPlayer = new Human();
+		Player computerPlayer = new Computer();
+		if (humanPlayer.getSymbol() == Cell.SYMBOL_O) {
+			computerPlayer.setSymbol(Cell.SYMBOL_X);
+		} else if (humanPlayer.getSymbol() == Cell.SYMBOL_X) {
+			computerPlayer.setSymbol(Cell.SYMBOL_O);
+		}
+		players.add(humanPlayer);
+		players.add(computerPlayer);
+	}
+
+	private void initializeHumanHuman() {
+		System.out.println("Пока не поддерживается");
 	}
 
 
@@ -136,8 +151,37 @@ public class Game {
 
 	private class GameManager {
 
-		public void manage() {
+		private Player player1;
+		private Player player2;
+		private Field field;
 
+		public void manage() {
+			player1 = players.get(0);
+			player2 = players.get(1);
+			createField();
+			System.out.printf("%s[%s] VS %s[%s]\n", player1.getName(), player1.getSymbol(), player2.getName(),
+					player2.getSymbol());
+			System.out.println("Игра начинается.");
+			System.out.printf("Первым ходит %s[%s].", getPlayerWhoWillMakeTheFirstStep().getName(),
+					getPlayerWhoWillMakeTheFirstStep().getSymbol());
+			showField();
+		}
+
+		private void createField() {
+			field = new Field();
+		}
+
+		private void showField() {
+			field.display();
+		}
+
+		private Player getPlayerWhoWillMakeTheFirstStep() {
+			if (player1.getSymbol() == Cell.SYMBOL_X) {
+				return player1;
+			} else if (player2.getSymbol() == Cell.SYMBOL_X) {
+				return player2;
+			}
+			return null;
 		}
 	}
 

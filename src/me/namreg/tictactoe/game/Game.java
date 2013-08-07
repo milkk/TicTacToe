@@ -58,7 +58,8 @@ public class Game {
 	}
 
 	private void initializeHumanHuman() {
-		System.out.println("Пока не поддерживается");
+		players.add(new Human());
+		players.add(new Human());
 	}
 
 
@@ -212,5 +213,4 @@ public class Game {
 			return null;
 		}
 	}
-
 }

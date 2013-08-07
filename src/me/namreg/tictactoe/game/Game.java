@@ -3,6 +3,7 @@ package me.namreg.tictactoe.game;
 import me.namreg.tictactoe.helpers.FileHelper;
 import me.namreg.tictactoe.menu.InfoMenu;
 import me.namreg.tictactoe.menu.MenuListenerAdapter;
+import me.namreg.tictactoe.menu.RulesMenu;
 import me.namreg.tictactoe.menu.StartupMenu;
 import me.namreg.tictactoe.player.Player;
 
@@ -35,14 +36,6 @@ public class Game {
 		System.out.println("Starting new game");
 	}
 
-	private void rules() {
-		try {
-			System.out.println(FileHelper.getTextFromFile(RULES_FILENAME));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
 	private void showStartupMenu() {
 		StartupMenu menu = new StartupMenu(new MenuListenerAdapter() {
 			@Override
@@ -60,6 +53,21 @@ public class Game {
 					case StartupMenu.CODE_EXIT:
 						stop();
 				}
+			}
+		});
+		menu.show();
+	}
+
+	private void rules() {
+		try {
+			System.out.println(FileHelper.getTextFromFile(RULES_FILENAME));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		RulesMenu menu = new RulesMenu(new MenuListenerAdapter() {
+			@Override
+			public void codeChosenWithSuccess(Integer code, String title) {
+				showStartupMenu();
 			}
 		});
 		menu.show();

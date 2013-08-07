@@ -29,7 +29,7 @@ abstract public class FileHelper {
 				br.close();
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return sb.toString();

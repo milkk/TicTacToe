@@ -62,6 +62,7 @@ abstract public class Menu {
 
 	protected void incorrectInput(Object input) {
 		setChosen(false);
+		System.out.println();
 		System.out.println("ERROR:Некорректный ввод");
 		listener.codeChosenWithError(input);
 		draw();

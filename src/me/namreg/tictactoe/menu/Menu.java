@@ -29,6 +29,7 @@ abstract public class Menu {
 				incorrectInput(scanner.next());
 			}
 		}
+		scanner.close();
 	}
 
 	public boolean isChosen() {

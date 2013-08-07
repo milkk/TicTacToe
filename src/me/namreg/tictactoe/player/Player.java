@@ -3,12 +3,15 @@ package me.namreg.tictactoe.player;
 import me.namreg.tictactoe.field.Cell;
 import me.namreg.tictactoe.field.Field;
 
+import java.util.Scanner;
+
 abstract public class Player {
 
+	protected Scanner scanner = new Scanner(System.in);
 	private String name;
 	private char symbol;
 
-	abstract protected void makeStep(Field field);
+	abstract public void makeStep(Field field);
 
 	public char getSymbol() {
 		return symbol;
@@ -16,7 +19,7 @@ abstract public class Player {
 
 	public void setSymbol(char symbol) {
 		if (!Cell.isSymbolValid(symbol)) {
-			throw new IllegalArgumentException("Выбран недопустимый сивмол");
+			throw new IllegalArgumentException("ERROR:Выбран недопустимый сивмол");
 		}
 		this.symbol = symbol;
 	}
@@ -33,15 +36,10 @@ abstract public class Player {
 	}
 
 	public static class IllegalNameException extends IllegalArgumentException {
-		private static final String msg = "Некорректное имя.\n Должно быть больше 3-х символов и меньше 10";
+		private static final String msg = "ERROR:Некорректное имя.\n Должно быть больше 3-х символов и меньше 10";
 
 		public IllegalNameException() {
 			super(msg);
 		}
-
-		public IllegalNameException(String message) {
-			super(message);
-		}
-
 	}
 }

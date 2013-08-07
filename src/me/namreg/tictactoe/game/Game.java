@@ -154,6 +154,7 @@ public class Game {
 		private Player player1;
 		private Player player2;
 		private Field field;
+		private int currentQueueIndex = 0;
 
 		public void manage() {
 			player1 = players.get(0);
@@ -162,9 +163,27 @@ public class Game {
 			System.out.printf("%s[%s] VS %s[%s]\n", player1.getName(), player1.getSymbol(), player2.getName(),
 					player2.getSymbol());
 			System.out.println("Игра начинается.");
-			System.out.printf("Первым ходит %s[%s].", getPlayerWhoWillMakeTheFirstStep().getName(),
+			System.out.printf("Первым ходит %s[%s].\n", getPlayerWhoWillMakeTheFirstStep().getName(),
 					getPlayerWhoWillMakeTheFirstStep().getSymbol());
 			showField();
+			running = true;
+			ArrayList<Player> queue = new ArrayList<Player>(2);
+			queue.add(getPlayerWhoWillMakeTheFirstStep());
+			queue.add(getPlayerWhoWillMakeTheSecondStep());
+			while (running) {
+				Player currentPlayer = queue.get(currentQueueIndex);
+				System.out.println();
+				currentPlayer.makeStep(field);
+				showField();
+				increaseCurrentQueueIndex();
+			}
+		}
+
+		private void increaseCurrentQueueIndex() {
+			currentQueueIndex++;
+			if (currentQueueIndex > players.size() - 1) {
+				currentQueueIndex = 0;
+			}
 		}
 
 		private void createField() {
@@ -179,6 +198,15 @@ public class Game {
 			if (player1.getSymbol() == Cell.SYMBOL_X) {
 				return player1;
 			} else if (player2.getSymbol() == Cell.SYMBOL_X) {
+				return player2;
+			}
+			return null;
+		}
+
+		private Player getPlayerWhoWillMakeTheSecondStep() {
+			if (player1.getSymbol() == Cell.SYMBOL_O) {
+				return player1;
+			} else if (player2.getSymbol() == Cell.SYMBOL_O) {
 				return player2;
 			}
 			return null;

@@ -12,7 +12,7 @@ public class Computer extends Player {
 	}
 
 	@Override
-	protected void makeStep(Field field) {
-
+	public void makeStep(Field field) {
+		System.out.println("Ходит " + getName() + ":");
 	}
 }

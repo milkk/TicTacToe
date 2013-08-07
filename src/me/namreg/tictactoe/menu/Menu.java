@@ -20,7 +20,7 @@ abstract public class Menu {
 			if (scanner.hasNextInt()) {
 				Integer input = scanner.nextInt();
 				if (isCodeValid(input)) {
-					listener.codeSelectedWithSuccess(input, getItems().get(input));
+					listener.codeChosenWithSuccess(input, getItems().get(input));
 					setChosen(true);
 				} else {
 					incorrectInput(input);
@@ -63,15 +63,15 @@ abstract public class Menu {
 	protected void incorrectInput(Object input) {
 		setChosen(false);
 		System.out.println("ERROR:Некорректный ввод");
-		listener.codeSelectedWithError(input);
+		listener.codeChosenWithError(input);
 		draw();
 	}
 
 	public interface Listener {
 
-		void codeSelectedWithSuccess(Integer code, String title);
+		void codeChosenWithSuccess(Integer code, String title);
 
-		void codeSelectedWithError(Object input);
+		void codeChosenWithError(Object input);
 	}
 
 }

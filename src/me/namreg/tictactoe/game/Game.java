@@ -46,7 +46,7 @@ public class Game {
 	private void showStartupMenu() {
 		StartupMenu menu = new StartupMenu(new MenuListenerAdapter() {
 			@Override
-			public void codeSelectedWithSuccess(Integer code, String title) {
+			public void codeChosenWithSuccess(Integer code, String title) {
 				switch (code) {
 					case StartupMenu.CODE_NEW_GAME:
 						newGame();
@@ -73,7 +73,7 @@ public class Game {
 		}
 		InfoMenu menu = new InfoMenu(new MenuListenerAdapter() {
 			@Override
-			public void codeSelectedWithSuccess(Integer code, String title) {
+			public void codeChosenWithSuccess(Integer code, String title) {
 				showStartupMenu();
 			}
 		});

@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 abstract public class Player {
 
+	private static final int NAME_MIN_SIZE = 3;
+	private static final int NAME_MAX_SIZE = 10;
+
 	protected Scanner scanner = new Scanner(System.in);
 	private String name;
 	private char symbol;
@@ -29,14 +32,15 @@ abstract public class Player {
 	}
 
 	public void setName(String name) throws IllegalNameException {
-		if (name.length() < 3 || name.length() > 10) {
+		if (name.length() < NAME_MIN_SIZE || name.length() > NAME_MAX_SIZE) {
 			throw new IllegalNameException();
 		}
 		this.name = name;
 	}
 
 	public static class IllegalNameException extends IllegalArgumentException {
-		private static final String msg = "ERROR:Некорректное имя.\n Должно быть больше 3-х символов и меньше 10";
+		private static final String msg = "ERROR:Некорректное имя.\n Должно быть больше " + NAME_MIN_SIZE + " " +
+				"символов и меньше " + NAME_MAX_SIZE;
 
 		public IllegalNameException() {
 			super(msg);

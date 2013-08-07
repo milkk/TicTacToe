@@ -175,11 +175,11 @@ public class Game {
 				System.out.println();
 				currentPlayer.makeStep(field);
 				showField();
-				increaseCurrentQueueIndex();
+				nextQueueIndex();
 			}
 		}
 
-		private void increaseCurrentQueueIndex() {
+		private void nextQueueIndex() {
 			currentQueueIndex++;
 			if (currentQueueIndex > players.size() - 1) {
 				currentQueueIndex = 0;

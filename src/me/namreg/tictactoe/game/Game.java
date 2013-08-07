@@ -1,10 +1,7 @@
 package me.namreg.tictactoe.game;
 
 import me.namreg.tictactoe.helpers.FileHelper;
-import me.namreg.tictactoe.menu.InfoMenu;
-import me.namreg.tictactoe.menu.MenuListenerAdapter;
-import me.namreg.tictactoe.menu.RulesMenu;
-import me.namreg.tictactoe.menu.StartupMenu;
+import me.namreg.tictactoe.menu.*;
 import me.namreg.tictactoe.player.Player;
 
 import java.io.FileNotFoundException;
@@ -19,8 +16,13 @@ public class Game {
 	private static final String RULES_FILENAME = "rules.txt";
 	private boolean running = false;
 	private List players = new ArrayList<Player>(2);
+	private Mode mode;
 
 	public void start() {
+		if (running) {
+			System.out.println("Игра уже запущена");
+			return;
+		}
 		showStartupMenu();
 	}
 
@@ -29,11 +31,8 @@ public class Game {
 		System.exit(0);
 	}
 
-	private void newGame() {
-		if (running) {
-			System.out.println("Игра уже запущена");
-		}
-		System.out.println("Starting new game");
+	private void initialize() {
+
 	}
 
 	private void showStartupMenu() {
@@ -58,6 +57,28 @@ public class Game {
 		menu.show();
 	}
 
+	private void newGame() {
+
+		System.out.println();
+		GameMenu menu = new GameMenu(new MenuListenerAdapter() {
+			@Override
+			public void codeChosenWithSuccess(Integer code, String title) {
+				switch (code) {
+					case GameMenu.CODE_BACK:
+						showStartupMenu();
+						break;
+					case GameMenu.CODE_HUMAN_COMPUTER:
+						mode = Mode.HUMAN_COMPUTER;
+					case GameMenu.CODE_HUMAN_HUMAN:
+						mode = Mode.HUMAN_HUMAN;
+						initialize();
+						break;
+				}
+			}
+		});
+		menu.show();
+	}
+
 	private void rules() {
 		try {
 			System.out.println(FileHelper.getTextFromFile(RULES_FILENAME));
@@ -67,7 +88,9 @@ public class Game {
 		RulesMenu menu = new RulesMenu(new MenuListenerAdapter() {
 			@Override
 			public void codeChosenWithSuccess(Integer code, String title) {
-				showStartupMenu();
+				if (code == RulesMenu.CODE_BACK) {
+					showStartupMenu();
+				}
 			}
 		});
 		menu.show();
@@ -82,9 +105,13 @@ public class Game {
 		InfoMenu menu = new InfoMenu(new MenuListenerAdapter() {
 			@Override
 			public void codeChosenWithSuccess(Integer code, String title) {
-				showStartupMenu();
+				if (code == InfoMenu.CODE_BACK) {
+					showStartupMenu();
+				}
 			}
 		});
 		menu.show();
 	}
+
+	public enum Mode {HUMAN_HUMAN, HUMAN_COMPUTER}
 }

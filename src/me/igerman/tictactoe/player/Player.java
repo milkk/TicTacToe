@@ -1,7 +1,7 @@
-package me.namreg.tictactoe.player;
+package me.igerman.tictactoe.player;
 
-import me.namreg.tictactoe.field.Cell;
-import me.namreg.tictactoe.field.Field;
+import me.igerman.tictactoe.field.Cell;
+import me.igerman.tictactoe.field.Field;
 
 import java.util.Scanner;
 

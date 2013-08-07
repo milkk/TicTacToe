@@ -1,6 +1,6 @@
-package me.namreg.tictactoe;
+package me.igerman.tictactoe;
 
-import me.namreg.tictactoe.game.Game;
+import me.igerman.tictactoe.game.Game;
 
 public class Main {
 

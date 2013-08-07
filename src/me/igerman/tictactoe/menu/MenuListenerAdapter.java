@@ -1,4 +1,4 @@
-package me.namreg.tictactoe.menu;
+package me.igerman.tictactoe.menu;
 
 
 public class MenuListenerAdapter implements Menu.Listener {

@@ -1,4 +1,4 @@
-package me.namreg.tictactoe.helpers;
+package me.igerman.tictactoe.helpers;
 
 
 import java.io.BufferedReader;

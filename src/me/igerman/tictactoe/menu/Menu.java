@@ -1,4 +1,4 @@
-package me.namreg.tictactoe.menu;
+package me.igerman.tictactoe.menu;
 
 import java.util.Map;
 import java.util.Scanner;

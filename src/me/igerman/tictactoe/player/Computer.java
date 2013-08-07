@@ -1,6 +1,6 @@
-package me.namreg.tictactoe.player;
+package me.igerman.tictactoe.player;
 
-import me.namreg.tictactoe.field.Field;
+import me.igerman.tictactoe.field.Field;
 
 public class Computer extends Player {
 

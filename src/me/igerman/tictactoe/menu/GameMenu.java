@@ -1,4 +1,4 @@
-package me.namreg.tictactoe.menu;
+package me.igerman.tictactoe.menu;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

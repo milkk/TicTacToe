@@ -1,12 +1,12 @@
-package me.namreg.tictactoe.game;
+package me.igerman.tictactoe.game;
 
-import me.namreg.tictactoe.field.Cell;
-import me.namreg.tictactoe.field.Field;
-import me.namreg.tictactoe.helpers.FileHelper;
-import me.namreg.tictactoe.menu.*;
-import me.namreg.tictactoe.player.Computer;
-import me.namreg.tictactoe.player.Human;
-import me.namreg.tictactoe.player.Player;
+import me.igerman.tictactoe.field.Cell;
+import me.igerman.tictactoe.field.Field;
+import me.igerman.tictactoe.helpers.FileHelper;
+import me.igerman.tictactoe.menu.*;
+import me.igerman.tictactoe.player.Computer;
+import me.igerman.tictactoe.player.Human;
+import me.igerman.tictactoe.player.Player;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -58,6 +58,7 @@ public class Game {
 	}
 
 	private void initializeHumanHuman() {
+		//TODO: Предусмотреть ситуацию, когда пользователи выбирают одинаковый символ
 		players.add(new Human());
 		players.add(new Human());
 	}

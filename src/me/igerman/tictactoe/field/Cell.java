@@ -1,4 +1,4 @@
-package me.namreg.tictactoe.field;
+package me.igerman.tictactoe.field;
 
 
 public class Cell {

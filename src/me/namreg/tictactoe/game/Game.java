@@ -1,10 +1,12 @@
 package me.namreg.tictactoe.game;
 
+import me.namreg.tictactoe.helpers.FileHelper;
 import me.namreg.tictactoe.menu.InfoMenu;
 import me.namreg.tictactoe.menu.MenuListenerAdapter;
 import me.namreg.tictactoe.menu.StartupMenu;
 import me.namreg.tictactoe.player.Player;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import java.util.List;
 public class Game {
 
 	public static final Game SHARED_INSTANCE = new Game();
+	private static final String INFO_FILENAME = "info.txt";
+	private static final String RULES_FILENAME = "rules.txt";
 	private boolean running = false;
 	private List players = new ArrayList<Player>(2);
 
@@ -32,15 +36,11 @@ public class Game {
 	}
 
 	private void rules() {
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$ Правила игры $$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println();
-
-		System.out.println("Игроки по очереди ставят на свободные клетки поля 3х3 знаки ");
-		System.out.println("(один всегда крестики, другой всегда нолики). Первый, выстроивший в ряд 3 ");
-		System.out.println("своих фигуры по вертикали, горизонтали или диагонали, выигрывает. ");
-		System.out.println("Первый ход делает игрок, ставящий крестики.");
-		System.out.println();
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		try {
+			System.out.println(FileHelper.getTextFromFile(RULES_FILENAME));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void showStartupMenu() {
@@ -66,13 +66,11 @@ public class Game {
 	}
 
 	private void info() {
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$ Информация $$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println();
-		System.out.println("Эта игра разработана дла свободного университета hexlet.org");
-		System.out.println("Раработчик: Igor German(namreg)");
-		System.out.println("Email:iggerman@yandex.ru");
-		System.out.println();
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		try {
+			System.out.println(FileHelper.getTextFromFile(INFO_FILENAME));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		InfoMenu menu = new InfoMenu(new MenuListenerAdapter() {
 			@Override
 			public void codeSelectedWithSuccess(Integer code, String title) {

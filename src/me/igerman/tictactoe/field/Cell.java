@@ -21,6 +21,10 @@ public class Cell {
 		symbol = s;
 	}
 
+	public char getSymbol() {
+		return symbol;
+	}
+
 	public boolean isEmpty() {
 		return symbol == SYMBOL_DEFAULT;
 	}

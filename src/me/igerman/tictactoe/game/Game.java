@@ -58,7 +58,6 @@ public class Game {
 	}
 
 	private void initializeHumanHuman() {
-		//TODO: Предусмотреть ситуацию, когда пользователи выбирают одинаковый символ
 		players.add(new Human());
 		players.add(new Human());
 	}
@@ -176,9 +175,26 @@ public class Game {
 				Player currentPlayer = queue.get(currentQueueIndex);
 				System.out.println();
 				currentPlayer.makeStep(field);
+				checkWinner(currentPlayer);
 				showField();
 				nextQueueIndex();
 			}
+		}
+
+		private void checkWinner(Player player) {
+			boolean isPlayerWon = field.isHorizontalCellsFilledWithSymbol(player.getSymbol());
+			isPlayerWon = isPlayerWon || field.isVerticalCellsFilledWithSymbol(player.getSymbol());
+			isPlayerWon = isPlayerWon || field.isDiagonalCellsFilledWithSymbol(player.getSymbol());
+			if (isPlayerWon) {
+				announceTheWinner(player);
+			}
+		}
+
+		private void announceTheWinner(Player player) {
+			System.out.println("СТОП игра");
+			System.out.printf("Выиграл игрок %s[%s].\n", player.getName(), player.getSymbol());
+			field.display();
+			stop();
 		}
 
 		private void nextQueueIndex() {

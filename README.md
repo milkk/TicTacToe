@@ -9,6 +9,8 @@ TicTacToe console game for Hexlet University(http://hexlet.org)
 статистика игры
 игра с компьютером
 вывод поля после каждого хода
+подсказка с координатами
+
 проигрывание музыки при начале игры и в конце(http://stackoverflow
 .com/questions/6045384/playing-mp3-and-wav-in-java)
 

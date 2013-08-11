@@ -16,7 +16,7 @@ public class Human extends Player {
 
 	@Override
 	public void makeStep(Field field) {
-		System.out.println("Ходит " + getName() + ":");
+		System.out.printf("Ходит %s[%s]:", getName(), getSymbol());
 		boolean stepCompleted = false;
 		while (!stepCompleted) {
 			if (scanner.hasNext()) {

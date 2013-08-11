@@ -1,20 +1,8 @@
 TicTacToe
 =========
 
-TicTacToe console game for Hexlet University(http://hexlet.org)
+TicTacToe console game for Hexlet University(http://hexlet.org)<br/>
+Version: <strong>1.0</strong><br/>
 
-Мысли:
-
-ввод имени игрока
-статистика игры
-игра с компьютером
-вывод поля после каждого хода
-подсказка с координатами
-
-проигрывание музыки при начале игры и в конце(http://stackoverflow
-.com/questions/6045384/playing-mp3-and-wav-in-java)
-
-===============
-произвольный (на самом деле нет) размер поля
-время игры => в статистику можно
-
+### Developer Info:
+Email: iggerman  [at]  yandex.com

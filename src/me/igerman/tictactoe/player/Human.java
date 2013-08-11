@@ -34,7 +34,7 @@ public class Human extends Player {
 							stepCompleted = true;
 						}
 					} else {
-						System.out.println("ERROR:Неккоректный ввод");
+						System.out.println("ERROR:Неккоректный ввод. \nКоординаты выходят за пределы поля");
 					}
 				} else {
 					System.out.println("ERROR:Неправильный формат ввода.");
@@ -67,8 +67,13 @@ public class Human extends Player {
 			if (scanner.hasNext()) {
 				char input = scanner.next().charAt(0);
 				if (Cell.isSymbolValid(input)) {
-					setSymbol(input);
-					hasSymbol = true;
+					try {
+						setSymbol(input);
+						hasSymbol = true;
+					} catch (IllegalArgumentException e) {
+						hasSymbol = false;
+						System.out.println(e.getMessage());
+					}
 				} else {
 					hasSymbol = false;
 					System.out.println("ERROR:Введен некорректный символ.");

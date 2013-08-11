@@ -3,12 +3,14 @@ package me.igerman.tictactoe.player;
 import me.igerman.tictactoe.field.Cell;
 import me.igerman.tictactoe.field.Field;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 abstract public class Player {
 
 	private static final int NAME_MIN_SIZE = 3;
 	private static final int NAME_MAX_SIZE = 10;
+	private static ArrayList<Character> selectedSymbols = new ArrayList<Character>();
 
 	protected Scanner scanner = new Scanner(System.in);
 	private String name;
@@ -24,7 +26,11 @@ abstract public class Player {
 		if (!Cell.isSymbolValid(symbol)) {
 			throw new IllegalArgumentException("ERROR:Выбран недопустимый сивмол");
 		}
+		if (selectedSymbols.contains(symbol)) {
+			throw new IllegalArgumentException("ERROR: Символ уже занят");
+		}
 		this.symbol = symbol;
+		selectedSymbols.add(symbol);
 	}
 
 	public String getName() {

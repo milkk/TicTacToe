@@ -15,39 +15,10 @@ public class Field {
 		}
 	}
 
-	public Cell[][] getField() {
-		return field;
-	}
-
-	public void display() {
-		for (int i = 0; i < ROWS; i++) {
-			for (int j = 0; j < COLS; j++) {
-				field[i][j].display();
-			}
-			System.out.println();
-		}
-	}
-
-	public boolean isHorizontalCellsFilledWithSymbol(char symbol) {
-		boolean isFilled = false;
-		for (int i = 0; i < ROWS; i++) {
-			isFilled = isFilled || isHorizontalLineFilled(symbol, i);
-		}
-		return isFilled;
-	}
-
 	private boolean isHorizontalLineFilled(char symbol, int lineIndex) {
 		boolean isFilled = true;
 		for (int j = 0; j < COLS; j++) {
 			isFilled = isFilled && field[lineIndex][j].getSymbol() == symbol;
-		}
-		return isFilled;
-	}
-
-	public boolean isVerticalCellsFilledWithSymbol(char symbol) {
-		boolean isFilled = false;
-		for (int i = 0; i < COLS; i++) {
-			isFilled = isFilled || isVerticalLineFilled(symbol, i);
 		}
 		return isFilled;
 	}
@@ -80,11 +51,48 @@ public class Field {
 		return isFilled;
 	}
 
+	public Cell[][] getField() {
+		return field;
+	}
+
+	public void display() {
+		for (int i = 0; i < ROWS; i++) {
+			for (int j = 0; j < COLS; j++) {
+				field[i][j].display();
+			}
+			System.out.println();
+		}
+	}
+
+	public boolean isHorizontalCellsFilledWithSymbol(char symbol) {
+		boolean isFilled = false;
+		for (int i = 0; i < ROWS; i++) {
+			isFilled = isFilled || isHorizontalLineFilled(symbol, i);
+		}
+		return isFilled;
+	}
+
+	public boolean isVerticalCellsFilledWithSymbol(char symbol) {
+		boolean isFilled = false;
+		for (int i = 0; i < COLS; i++) {
+			isFilled = isFilled || isVerticalLineFilled(symbol, i);
+		}
+		return isFilled;
+	}
+
 	public boolean isRowIndexValid(int index) {
 		return index >= 0 && index < ROWS;
 	}
 
 	public boolean isColIndexValid(int index) {
 		return index >= 0 && index < COLS;
+	}
+
+	public int getRows() {
+		return ROWS;
+	}
+
+	public int getCols() {
+		return COLS;
 	}
 }

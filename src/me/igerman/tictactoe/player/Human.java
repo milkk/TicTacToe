@@ -6,6 +6,8 @@ import me.igerman.tictactoe.field.Field;
 public class Human extends Player {
 
 	private static final String HELP_COMMAND = "help";
+	private static final String FIELD_COMMAND = "field";
+
 	private boolean hasName;
 	private boolean hasSymbol;
 
@@ -24,6 +26,9 @@ public class Human extends Player {
 				String input = scanner.next();
 				if (input.equals(HELP_COMMAND)) {
 					field.displayHint();
+					showMakeStepInfo();
+				} else if (input.equals(FIELD_COMMAND)) {
+					field.display();
 					showMakeStepInfo();
 				} else if (input.matches("\\d\\.\\d")) {
 					String[] inputChunks = input.split("\\.");

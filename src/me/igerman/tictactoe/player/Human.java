@@ -5,6 +5,7 @@ import me.igerman.tictactoe.field.Field;
 
 public class Human extends Player {
 
+	private static final String HELP_COMMAND = "help";
 	private boolean hasName;
 	private boolean hasSymbol;
 
@@ -16,12 +17,15 @@ public class Human extends Player {
 
 	@Override
 	public void makeStep(Field field) {
-		System.out.printf("Ходит %s[%s]:", getName(), getSymbol());
+		showMakeStepInfo();
 		boolean stepCompleted = false;
 		while (!stepCompleted) {
 			if (scanner.hasNext()) {
 				String input = scanner.next();
-				if (input.matches("\\d\\.\\d")) {
+				if (input.equals(HELP_COMMAND)) {
+					field.displayHint();
+					showMakeStepInfo();
+				} else if (input.matches("\\d\\.\\d")) {
 					String[] inputChunks = input.split("\\.");
 					int rowIndex = Integer.valueOf(inputChunks[0]);
 					int colIndex = Integer.valueOf(inputChunks[1]);
@@ -42,6 +46,11 @@ public class Human extends Player {
 				}
 			}
 		}
+	}
+
+	private void showMakeStepInfo() {
+		System.out.printf("Ходит %s[%s] (%s):\t", getName(), getSymbol(), "для просмотра координат - напечатайте " +
+				"help");
 	}
 
 	private void chooseName() {

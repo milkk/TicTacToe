@@ -45,7 +45,7 @@ public class Field {
 
 	private boolean isRightDiagonalFilled(char symbol) {
 		boolean isFilled = true;
-		for (int i = 0, j = COLS - 1; i < j; i++, j--) {
+		for (int i = 0, j = COLS - 1; i <= j; i++, j--) {
 			isFilled = isFilled && field[i][j].getSymbol() == symbol;
 		}
 		return isFilled;
@@ -59,6 +59,16 @@ public class Field {
 		for (int i = 0; i < ROWS; i++) {
 			for (int j = 0; j < COLS; j++) {
 				field[i][j].display();
+			}
+			System.out.println();
+		}
+	}
+
+	public void displayHint() {
+		System.out.print("\nКоординатная сетка:\n");
+		for (int i = 0; i < ROWS; i++) {
+			for (int j = 0; j < COLS; j++) {
+				System.out.printf("[%d.%d]", i, j);
 			}
 			System.out.println();
 		}

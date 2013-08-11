@@ -18,7 +18,6 @@ public class Game {
 	private boolean running = false;
 	private Mode mode;
 	private MenuManager menuManager = new MenuManager();
-	private GameManager gameManager;
 	private ArrayList<Player> players = new ArrayList<Player>(2);
 
 	public void start() {
@@ -40,7 +39,7 @@ public class Game {
 		} else if (mode == Mode.HUMAN_HUMAN) {
 			initializeHumanHuman();
 		}
-		gameManager = new GameManager();
+		GameManager gameManager = new GameManager();
 		gameManager.manage();
 
 	}
@@ -171,11 +170,16 @@ public class Game {
 			ArrayList<Player> queue = new ArrayList<Player>(2);
 			queue.add(getPlayerWhoWillMakeTheFirstStep());
 			queue.add(getPlayerWhoWillMakeTheSecondStep());
+			int totalSteps = 0;
 			while (running) {
 				Player currentPlayer = queue.get(currentQueueIndex);
 				System.out.println();
 				currentPlayer.makeStep(field);
+				totalSteps++;
 				checkWinner(currentPlayer);
+				if (totalSteps == field.getCols() * field.getRows()) {
+					announceATie();
+				}
 				showField();
 				nextQueueIndex();
 			}
@@ -193,6 +197,13 @@ public class Game {
 		private void announceTheWinner(Player player) {
 			System.out.println("СТОП игра");
 			System.out.printf("Выиграл игрок %s[%s].\n", player.getName(), player.getSymbol());
+			field.display();
+			stop();
+		}
+
+		private void announceATie() {
+			System.out.println("СТОП игра");
+			System.out.println("Победила дружба :-)");
 			field.display();
 			stop();
 		}

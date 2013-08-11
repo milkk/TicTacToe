@@ -1,6 +1,7 @@
 # IDE Files#
 .idea/
 TicTacToe.iml
+out/
 
 *.class
 
